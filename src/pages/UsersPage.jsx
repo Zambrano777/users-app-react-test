@@ -1,31 +1,15 @@
 /* eslint-disable react/prop-types */
+import { useContext } from "react";
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
+import { UserContext } from "../context/UserContext";
 
-
-export const UsersPage = ({
-  users,
-  userSelected,
-  initialForm,
-  handlerAddUser,
-  handlerRemoveUser,
-  handlerUserSelectedForm,
-  visibleForm,
-  openHandlerForm,
-  closeHandlerForm,
-}) => {
-  
+export const UsersPage = () => {
+  const { users, visibleForm, openHandlerForm } = useContext(UserContext);
 
   return (
     <>
-      {!visibleForm || (
-        <UserModalForm
-          userSelected={userSelected}
-          initialForm={initialForm}
-          handlerAddUser={handlerAddUser}
-          closeHandlerForm={closeHandlerForm}
-        />
-      )}
+      {!visibleForm || <UserModalForm />}
       <div className="container my-4">
         <h2>Users App</h2>
         <div className="row">
@@ -44,11 +28,7 @@ export const UsersPage = ({
                 No hay usuarios en el sistema
               </div>
             ) : (
-              <UsersList
-                users={users}
-                handlerRemoveUser={handlerRemoveUser}
-                handlerUserSelectedForm={handlerUserSelectedForm}
-              />
+              <UsersList />
             )}
           </div>
         </div>

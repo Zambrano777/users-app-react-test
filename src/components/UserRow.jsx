@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 /* eslint-disable react/prop-types */
-export const UserRow = ({
-  handlerUserSelectedForm,
-  handlerRemoveUser,
-  id,
-  username,
-  email,
-}) => {
+export const UserRow = ({ id, username, email }) => {
+  const { handlerRemoveUser } = useContext(UserContext);
+
   return (
     <>
       <tr key={id}>
@@ -31,7 +29,10 @@ export const UserRow = ({
           </button>
         </td> */}
         <td>
-          <NavLink className="btn btn-secondary btn-sm" to={'/users/edit/' + id}>
+          <NavLink
+            className="btn btn-secondary btn-sm"
+            to={"/users/edit/" + id}
+          >
             Update ROUTE
           </NavLink>
         </td>

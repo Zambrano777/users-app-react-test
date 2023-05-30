@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { UserRow } from "./UserRow";
+import { UserContext } from "../context/UserContext";
 
 /* eslint-disable react/prop-types */
-export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = [] }) => {
+export const UsersList = () => {
+  const { users = [] } = useContext(UserContext);
   return (
     <>
       <p>Listado de usuarios</p>
@@ -23,9 +26,6 @@ export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = 
               id={id}
               username={username}
               email={email}
-              handlerRemoveUser={handlerRemoveUser}
-              handlerUserSelectedForm = {handlerUserSelectedForm}
-              
             />
           ))}
         </tbody>

@@ -1,15 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserForm } from "../components/UserForm";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
-export const RegisterPage = ({
-  users = [],
-  handlerAddUser,
-  initialUserForm,
-}) => {
+export const RegisterPage = () => {
+  const { users =[], initialUserForm } = useContext(UserContext);
+
   const [userSelected, setUserSelected] = useState(initialUserForm);
 
   const { id } = useParams();
@@ -27,11 +26,7 @@ export const RegisterPage = ({
         <h4>{userSelected.id > 0 ? "Editar" : "Registrar"} Usuario</h4>
         <div className="row">
           <div className="col">
-            <UserForm
-              userSelected={userSelected}
-              handlerAddUser={handlerAddUser}
-              initialUserForm={initialUserForm}
-            />
+            <UserForm userSelected={userSelected} />
           </div>
         </div>
       </div>

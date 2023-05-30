@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { UserContext } from "../context/UserContext";
 
-export const UserForm = ({
-  userSelected,
-  handlerAddUser,
-  initialUserForm,
-  closeHandlerForm,
-}) => {
+export const UserForm = ({ userSelected, closeHandlerForm }) => {
+
+  const {initialUserForm, handlerAddUser} = useContext(UserContext)
+
   const [userForm, setUserForm] = useState(initialUserForm);
   const { id, username, password, email } = userForm;
 
