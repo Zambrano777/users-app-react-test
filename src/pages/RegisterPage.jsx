@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export const RegisterPage = () => {
-  const { users =[], initialUserForm } = useContext(UserContext);
+  const { users = [], initialUserForm } = useContext(UserContext);
 
   const [userSelected, setUserSelected] = useState(initialUserForm);
 
@@ -21,15 +21,13 @@ export const RegisterPage = () => {
   }, [id]);
 
   return (
-    <>
-      <div className="container my-4">
-        <h4>{userSelected.id > 0 ? "Editar" : "Registrar"} Usuario</h4>
-        <div className="row">
-          <div className="col">
-            <UserForm userSelected={userSelected} />
-          </div>
+    <div className="container my-4">
+      <h4>{userSelected.id > 0 ? "Editar" : "Registrar"} Usuario</h4>
+      <div className="row">
+        <div className="col">
+          <UserForm userSelected={userSelected} />
         </div>
       </div>
-    </>
+    </div>
   );
 };

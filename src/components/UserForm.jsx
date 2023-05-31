@@ -4,21 +4,15 @@ import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 
 export const UserForm = ({ userSelected, closeHandlerForm }) => {
-
-  const {initialUserForm, handlerAddUser} = useContext(UserContext)
+  const { initialUserForm, handlerAddUser } = useContext(UserContext);
 
   const [userForm, setUserForm] = useState(initialUserForm);
   const { id, username, password, email } = userForm;
 
-  const onCloseForm = () => {
-    closeHandlerForm();
-    setUserForm(initialUserForm);
-  };
-
   useEffect(() => {
     setUserForm({
       ...userSelected,
-      // password: ""
+      password: "",
     });
   }, [userSelected]);
 
@@ -52,6 +46,10 @@ export const UserForm = ({ userSelected, closeHandlerForm }) => {
     handlerAddUser(userForm);
     setUserForm(initialUserForm);
   };
+  const onCloseForm = () => {
+    closeHandlerForm();
+    setUserForm(initialUserForm);
+  };
 
   return (
     <>
@@ -65,9 +63,7 @@ export const UserForm = ({ userSelected, closeHandlerForm }) => {
           value={username}
           onChange={onInputChange}
         />
-        {id > 0 ? (
-          ""
-        ) : (
+        {id > 0 || (
           <input
             type="password"
             className="form-control my-3 w-75"

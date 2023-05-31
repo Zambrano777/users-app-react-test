@@ -5,11 +5,13 @@ import { Navbar } from "../components/Navbar";
 import { RegisterPage } from "../pages/RegisterPage";
 import { UserProvider } from "../context/UserProvider";
 
-export const UserRoutes = ({ login, handlerLogout }) => {
+export const UserRoutes = () => {
+
+
   return (
     <>
       <UserProvider>
-        <Navbar login={login} handlerLogout={handlerLogout} />
+        <Navbar/>
         <Routes>
           <Route path="users" element={<UsersPage />} />
           <Route path="users/register" element={<RegisterPage />} />

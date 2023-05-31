@@ -22,14 +22,12 @@ export const useUsers = () => {
   const [users, dispatch] = useReducer(userReducer, initialUsers);
   const [userSelected, setUserSelected] = useState(initialForm);
   const [visibleForm, setVisibleForm] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handlerAddUser = (user) => {
     // console.log(user);
-    let type = user.id === 0 ? "addUser" : "updateUser";
-
     dispatch({
-      type,
+      type: user.id === 0 ? "addUser" : "updateUser",
       payload: user,
     });
     Swal.fire(
@@ -39,8 +37,8 @@ export const useUsers = () => {
         : "El usuario ha sido actualizado con éxito",
       "success"
     );
-    closeHandlerForm()
-    navigate("/users")
+    closeHandlerForm();
+    navigate("/users");
   };
 
   const handlerRemoveUser = (id) => {
@@ -89,6 +87,6 @@ export const useUsers = () => {
     handlerRemoveUser,
     handlerUserSelectedForm,
     openHandlerForm,
-    closeHandlerForm
+    closeHandlerForm,
   };
 };
