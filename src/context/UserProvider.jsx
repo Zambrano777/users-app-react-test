@@ -1,35 +1,37 @@
-/* eslint-disable react/prop-types */
 import { useUsers } from "../hooks/useUsers";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserContext"
 
-export const UserProvider = ({ children }) => {
-  const {
-    users,
-    userSelected,
-    initialForm,
-    handlerAddUser,
-    handlerRemoveUser,
-    handlerUserSelectedForm,
-    visibleForm,
-    openHandlerForm,
-    closeHandlerForm,
-  } = useUsers();
+export const UserProvider = ({children}) => {
 
-  return (
-    <UserContext.Provider
-      value={{
+    const {
         users,
         userSelected,
-        initialForm,
+        initialUserForm,
+        visibleForm,
         handlerAddUser,
         handlerRemoveUser,
         handlerUserSelectedForm,
-        visibleForm,
-        openHandlerForm,
-        closeHandlerForm,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
-};
+        handlerOpenForm,
+        handlerCloseForm,
+        getUsers,
+    } = useUsers();
+
+    return (
+        <UserContext.Provider value={
+            {
+                users,
+                userSelected,
+                initialUserForm,
+                visibleForm,
+                handlerAddUser,
+                handlerRemoveUser,
+                handlerUserSelectedForm,
+                handlerOpenForm,
+                handlerCloseForm,
+                getUsers,
+            }
+        }>
+            {children}
+        </UserContext.Provider>
+    )
+}
